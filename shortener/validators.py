@@ -6,10 +6,12 @@ def validate_url(value):
     url_validator = URLValidator()
 
     reg_value = value
-    if 'http' in reg_value:
+    if 'https://' in reg_value:
+        new_value = reg_value
+    elif 'http://' in reg_value:
         new_value = reg_value
     else:
-        new_value = 'http://' + value
+        new_value = 'https://' + value
     try:
         url_validator(new_value)
     except:

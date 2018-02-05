@@ -87,5 +87,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+
 SHORTCODE_MIN = 6
 SHORTCODE_MAX = 15

@@ -21,8 +21,6 @@ class URL(models.Model):
     def save(self, *args, **kwargs):
         if self.short_url is None or self.short_url == '':
             self.short_url = create_shortcode(self)
-        if 'http' not in self.url:
-            self.url = 'http://' + self.url
         super(URL, self).save(*args, **kwargs)
 
     def get_short_url(self):

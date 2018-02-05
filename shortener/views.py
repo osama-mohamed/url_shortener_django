@@ -9,7 +9,7 @@ from .models import URL
 class UrlShortenerView(View):
 
     def get(self, request):
-        form = UrlForm()
+        form = UrlForm(None)
         context = {
             'form': form,
             'title': 'OSAMA MOHAMED URL Shortener',
@@ -17,14 +17,18 @@ class UrlShortenerView(View):
         return render(request, 'shortener/url.html', context)
 
     def post(self, request):
-        form = UrlForm(request.POST)
+        form = UrlForm(request.POST, None)
         context = {
             'form': form,
             'title': 'OSAMA MOHAMED URL Shortener',
         }
         template = 'shortener/url.html'
         if form.is_valid():
-            new_url = form.cleaned_data.get('url')
+            url = form.cleaned_data.get('url')
+            if 'https://' not in url and 'http://' not in url:
+                new_url = 'https://' + url
+            else:
+                new_url = url
             obj, created = URL.objects.get_or_create(url=new_url)
             context = {
                 'object': obj,
