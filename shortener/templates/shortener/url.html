@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ block.super }}
+{% endblock %}
+
+
+{% block body %}
+    <h1 class="text-center">{{ title }}</h1>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="col-sm-6 col-sm-offset-3">
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <br>
+            <input type="submit" class="btn btn-primary" value="Shorten &#8811;" style="display: block; margin: 0 auto;">
+        </form>
+    </div>
+{% endblock %}
