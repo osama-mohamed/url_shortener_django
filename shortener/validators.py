@@ -18,6 +18,6 @@ def validate_url(value):
 
 
 def validate_domain(value):
-    if not '.com' in value:
-        raise ValidationError('invalid URL syntax because no .com in url')
+    if '.' not in value:
+        raise ValidationError('invalid URL syntax because no . in url')
     return value

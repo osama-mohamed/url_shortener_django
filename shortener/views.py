@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic import View
+from django.http import Http404
 
 from .forms import UrlForm
 from .models import URL
@@ -37,8 +38,13 @@ class UrlShortenerView(View):
 
 
 class RedirectView(View):
-    def get(self, request, short_url=None, *args, **kwargs):
-        qs = URL.objects.filter(short_url__iexact=short_url)
-        if qs.count() and qs.exists():
+
+    def get(self, request, short_url=None):
+        qs = URL.objects.filter(short_url__iexact=short_url, active=True)
+        if qs.exists() and qs.count() == 1:
             obj = qs.first()
+            obj.clicks += 1
+            obj.save()
             return redirect(obj.url)
+        else:
+            raise Http404

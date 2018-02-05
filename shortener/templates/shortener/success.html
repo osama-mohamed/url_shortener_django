@@ -19,6 +19,6 @@
         <p>ORIGINAL URL : {{ object.url }}</p>
         <p>SHORTENER URL : <a href="{{ object.get_short_url }}" target="_blank">{{ object.get_short_url }}</a></p>
         <br>
-        <a class="btn btn-default" href="{% url 'home' %}"> &#43; New </a>
+        <a class="btn btn-primary" href="{% url 'home' %}"> &#43; New </a>
     </div>
 {% endblock %}
