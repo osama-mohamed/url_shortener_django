@@ -27,11 +27,11 @@ That's it.
 Now the project is running at `http://localhost:8000` and your routes is:
 
 
-| Route               | HTTP Method 	 | Description                           	      |
-|:--------------------|:--------------:|:---------------------------------------------|
-| {url}       	      | GET       	   | Paste your original link to be shortened     |
-| {url}/<short_url>  	| GET       	   | Redirect to the original link           	    |
-| {url}/admin/  	    | GET      	     | Admin control panel                     	    |
+| Route                 | HTTP Method 	 | Description                           	      |
+|:----------------------|:--------------:|:---------------------------------------------|
+| {host}       	        | GET       	   | Paste your original link to be shortened     |
+| {host}/<short_url>  	| GET       	   | Redirect to the original link           	    |
+| {host}/admin/  	      | GET      	     | Admin control panel                     	    |
 
 
 
