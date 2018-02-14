@@ -1,7 +1,12 @@
-# URL Shortener By Django
+# [URL Shortener](https://url-osama-mohamed-django.herokuapp.com) By Django
 
 [<img src="https://www.djangoproject.com/s/img/logos/django-logo-negative.png" width="200" title="Django Projects" >](https://github.com/OSAMAMOHAMED1234/django_projects)
 [<img src="https://www.mysql.com/common/logos/logo-mysql-170x115.png" width="150" title="Django Projects" >](https://github.com/OSAMAMOHAMED1234/django_projects)
+
+
+## For live preview :
+> [URL Shortener](https://url-osama-mohamed-django.herokuapp.com)
+
 
 ## Usage :
 ### Run project by :
@@ -29,7 +34,7 @@ Now the project is running at `http://localhost:8000` and your routes is:
 
 | Route                 | HTTP Method 	 | Description                           	      |
 |:----------------------|:--------------:|:---------------------------------------------|
-| {host}       	        | GET       	   | Paste your original link to be shortened     |
+| {host}       	        | POST       	   | Paste original link to be shortened          |
 | {host}/<short_url>  	| GET       	   | Redirect to the original link           	    |
 | {host}/admin/  	      | GET      	     | Admin control panel                     	    |
 
