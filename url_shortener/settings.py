@@ -49,6 +49,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'url_shortener.wsgi.application'
 
+import pymysql
+pymysql.install_as_MySQLdb()
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',

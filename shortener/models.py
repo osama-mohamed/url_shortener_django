@@ -1,6 +1,6 @@
 from django.db import models
 from django.conf import settings
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 from .utils import create_shortcode
 
@@ -24,4 +24,4 @@ class URL(models.Model):
         super(URL, self).save(*args, **kwargs)
 
     def get_short_url(self):
-        return 'http://localhost:8000' + reverse('redirect', kwargs={'short_url': self.short_url})
+        return reverse('shortener:redirect', kwargs={'short_url': self.short_url})

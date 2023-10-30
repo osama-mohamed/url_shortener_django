@@ -9,6 +9,11 @@ from .models import URL
 class UrlShortenerView(View):
 
     def get(self, request):
+        # print(request.build_absolute_uri())
+        # scheme = request.scheme  # 'http' or 'https'
+        # host = request.get_host()  # 127.0.0.1:8000 Hostname and the port
+        # path = request.path  # / URL path without domain
+        # print(f'{scheme}://{host}{path}')
         form = UrlForm(None)
         context = {
             'form': form,

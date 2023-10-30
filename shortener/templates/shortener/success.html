@@ -17,8 +17,8 @@
         <br>
         <br>
         <p>ORIGINAL URL : {{ object.url }}</p>
-        <p>SHORTENER URL : <a href="{{ object.get_short_url }}" target="_blank">{{ object.get_short_url }}</a></p>
+        <p>SHORTENER URL : <a href="{{ request.build_absolute_uri|slice:':-1' }}{{ object.get_short_url }}" target="_blank">{{ request.build_absolute_uri|slice:':-1' }}{{ object.get_short_url }}</a></p>
         <br>
-        <a class="btn btn-primary" href="{% url 'home' %}"> &#43; New </a>
+        <a class="btn btn-primary" href="{% url 'shortener:home' %}"> &#43; New </a>
     </div>
 {% endblock %}

@@ -6,13 +6,14 @@ from .models import URL
 class UrlModelAdmin(admin.ModelAdmin):
     list_display = [
         'id',
+        'active',
         'url',
         'short_url',
         'clicks',
         'added',
     ]
     list_display_links = ['id']
-    list_editable = ['url', 'short_url', 'clicks']
+    list_editable = ['active', 'url', 'short_url', 'clicks']
     list_filter = [
         'clicks',
         'active',
