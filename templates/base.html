@@ -6,9 +6,13 @@
     <title>{% block title %}OSAMA MOHAMED URL Shortener{% endblock %}</title>
   </head>
   <body>
-    <div class="container">
+    <div class="container text-center">
       {% include 'includes/messages.html' %}
-      {% block body %}{% endblock %}
+      <div class="row justify-content-center">
+        <div class="col-8">
+          {% block body %}{% endblock %}
+        </div>
+      </div>
     </div>
     {% include 'includes/js.html' %}
   </body>

@@ -5,22 +5,21 @@
 {% endblock %}
 
 {% block body %}
-  <div class="text-center">
-    <h1>Already Exists!</h1>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <p>ORIGINAL URL : {{ object.url }}</p>
-    <p>SHORTENER URL : <a href="{{ request.build_absolute_uri|slice:':-1' }}{{ object.get_short_url }}" target="_blank">{{ request.build_absolute_uri|slice:':-1' }}{{ object.get_short_url }}</a></p>
-    {% if object.clicks %}
-      <p>Clicked : {{ object.clicks }}</p>
-    {% endif %}
-    <br>
-    <a class="btn btn-primary" href="{% url 'shortener:home' %}"> &#43; New </a>
-  </div>
+  <h1>Already Exists!</h1>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <p>ORIGINAL URL : {{ object.url }}</p>
+  <p>SHORTENER URL : <a href="{{ request.scheme }}://{{ request.get_host }}{{ object.get_short_url }}" target="_blank" id="copyLink">{{ request.scheme }}://{{ request.get_host }}{{ object.get_short_url }}</a></p>
+  {% if object.clicks %}
+    <p>Clicked : {{ object.clicks }}</p>
+  {% endif %}
+  <br>
+  <button class="btn btn-info" id="copyButton">Copy Link</button>
+  <a class="btn btn-primary" href="{% url 'shortener:home' %}"> &#43; New </a>
 {% endblock %}

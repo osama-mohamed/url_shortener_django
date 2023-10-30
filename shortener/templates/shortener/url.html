@@ -6,7 +6,7 @@
 
 
 {% block body %}
-  <h1 class="text-center">{{ title }}</h1>
+  <h1>{{ title }}</h1>
   <br>
   <br>
   <br>
@@ -14,7 +14,7 @@
   <br>
   <br>
   <br>
-  <div class="col-sm-6 col-sm-offset-3">
+  <div style="text-align: initial !important;">
     <form action="" method="post">
       {% csrf_token %}
       {{ form.as_p }}
