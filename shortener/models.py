@@ -12,6 +12,7 @@ class URL(models.Model):
   short_url = models.CharField(max_length=SHORTCODE_MAX, unique=True, blank=True)
   clicks = models.PositiveIntegerField(default=0)
   active = models.BooleanField(default=True)
+  qr_code = models.ImageField(upload_to='qr_codes/', blank=True, null=True)
   added = models.DateTimeField(auto_now_add=True)
   updated = models.DateTimeField(auto_now=True)
 

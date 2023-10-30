@@ -7,6 +7,7 @@ class UrlModelAdmin(admin.ModelAdmin):
   list_display = [
     'id',
     'active',
+    'qr_code',
     'url',
     'short_url',
     'clicks',

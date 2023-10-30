@@ -4,6 +4,7 @@ from django.http import Http404
 
 from .forms import UrlForm
 from .models import URL
+from .utils import check_qr_img
 
 
 class UrlShortenerView(View):
@@ -34,6 +35,7 @@ class UrlShortenerView(View):
       else:
         new_url = url
       obj, created = URL.objects.get_or_create(url=new_url)
+      check_qr_img(obj, request)
       context = {
         'object': obj,
       }

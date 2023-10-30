@@ -133,6 +133,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 SHORTCODE_MIN = 6
 SHORTCODE_MAX = 15
 # Default primary key field type

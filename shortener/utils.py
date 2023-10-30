@@ -1,7 +1,8 @@
-import random
-import string
+import random, os, string, qrcode
 from django.conf import settings
+from django.core.files import File
 
+from io import BytesIO
 
 SHORTCODE_MIN = getattr(settings, 'SHORTCODE_MIN', 6)
 
@@ -17,3 +18,29 @@ def create_shortcode(instance, size=SHORTCODE_MIN):
   if qs.exists():
     return create_shortcode(instance, size=size)
   return new_code
+
+
+def check_qr_img(instance, request=None):
+  if instance.short_url:
+    file_path = f'{os.path.join(settings.MEDIA_ROOT, 'qr_codes', instance.short_url)}.png'
+    if not os.path.isfile(file_path):
+      generate_and_save_qr_code(instance, request=request)
+
+
+def generate_and_save_qr_code(instance, request=None):
+  qr = qrcode.QRCode(
+    version=1,
+    error_correction=qrcode.constants.ERROR_CORRECT_L,
+    box_size=10,
+    border=4,
+  )
+  data = request.build_absolute_uri(instance.short_url)
+  qr.add_data(data)
+  qr.make(fit=True)
+  img = qr.make_image(fill_color='black', back_color='white')
+  buffer = BytesIO()
+  img.save(buffer, 'PNG')
+  name = f'{instance.short_url}.png'
+  image_file = File(buffer, name=name)
+  instance.qr_code.save(name, image_file)
+  instance.save()
