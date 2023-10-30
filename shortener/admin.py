@@ -4,26 +4,26 @@ from .models import URL
 
 
 class UrlModelAdmin(admin.ModelAdmin):
-    list_display = [
-        'id',
-        'active',
-        'url',
-        'short_url',
-        'clicks',
-        'added',
-    ]
-    list_display_links = ['id']
-    list_editable = ['active', 'url', 'short_url', 'clicks']
-    list_filter = [
-        'clicks',
-        'active',
-        'added',
-    ]
-    search_fields = ['url', 'short_url', 'clicks']
-    list_per_page = 50
+  list_display = [
+    'id',
+    'active',
+    'url',
+    'short_url',
+    'clicks',
+    'added',
+  ]
+  list_display_links = ['id']
+  list_editable = ['active', 'url', 'short_url', 'clicks']
+  list_filter = [
+    'clicks',
+    'active',
+    'added',
+  ]
+  search_fields = ['url', 'short_url', 'clicks']
+  list_per_page = 50
 
-    class Meta:
-        model = URL
+  class Meta:
+    model = URL
 
 
 admin.site.register(URL, UrlModelAdmin)

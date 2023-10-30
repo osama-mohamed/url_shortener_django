@@ -1,24 +1,24 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Success | {{ block.super }}
+  Success | {{ block.super }}
 {% endblock %}
 
 {% block body %}
-    <div class="text-center">
-        <h1>Success!</h1>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <p>ORIGINAL URL : {{ object.url }}</p>
-        <p>SHORTENER URL : <a href="{{ request.build_absolute_uri|slice:':-1' }}{{ object.get_short_url }}" target="_blank">{{ request.build_absolute_uri|slice:':-1' }}{{ object.get_short_url }}</a></p>
-        <br>
-        <a class="btn btn-primary" href="{% url 'shortener:home' %}"> &#43; New </a>
-    </div>
+  <div class="text-center">
+    <h1>Success!</h1>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <p>ORIGINAL URL : {{ object.url }}</p>
+    <p>SHORTENER URL : <a href="{{ request.build_absolute_uri|slice:':-1' }}{{ object.get_short_url }}" target="_blank">{{ request.build_absolute_uri|slice:':-1' }}{{ object.get_short_url }}</a></p>
+    <br>
+    <a class="btn btn-primary" href="{% url 'shortener:home' %}"> &#43; New </a>
+  </div>
 {% endblock %}
