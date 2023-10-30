@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import URL
+from .models import URL, Analytics
 
 
 class UrlModelAdmin(admin.ModelAdmin):
@@ -28,3 +28,4 @@ class UrlModelAdmin(admin.ModelAdmin):
 
 
 admin.site.register(URL, UrlModelAdmin)
+admin.site.register(Analytics)
