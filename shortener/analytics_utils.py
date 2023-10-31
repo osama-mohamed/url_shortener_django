@@ -22,3 +22,9 @@ def get_country(ip):
 def get_platform_browser(request):
   platform_browser = httpagentparser.detect(request)
   return platform_browser
+
+def return_analytics_data(request):
+  ip = get_client_ip(request)
+  data = get_country(ip)
+  parsed_data = get_platform_browser(request.META.get('HTTP_USER_AGENT', ''))
+  return ip, data, parsed_data

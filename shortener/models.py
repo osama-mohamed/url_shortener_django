@@ -1,7 +1,6 @@
 from django.db import models
 from django.conf import settings
 from django.urls import reverse
-from django.db.models.signals import post_save
 
 from .utils import create_shortcode
 
@@ -53,12 +52,3 @@ class Analytics(models.Model):
 
   def __str__(self):
     return str(self.short_url)
-
-
-
-def post_post_save_receiver(sender, instance, created, *args, **kwargs):
-  if created:
-    Analytics.objects.create(short_url=instance)
-    # instance.save()
-
-# post_save.connect(post_post_save_receiver, sender=URL)
