@@ -27,5 +27,21 @@ class UrlModelAdmin(admin.ModelAdmin):
     model = URL
 
 
+class AnalyticsModelAdmin(admin.ModelAdmin):
+  list_display = [
+    'short_url',
+    'get_short_url',
+    'ip_address',
+    'timestamp',
+  ]
+  list_per_page = 50
+  
+  class Meta:
+    model = Analytics
+
+  def get_short_url(self, obj):
+    return obj.short_url.short_url
+
+
 admin.site.register(URL, UrlModelAdmin)
-admin.site.register(Analytics)
+admin.site.register(Analytics, AnalyticsModelAdmin)

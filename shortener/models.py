@@ -31,7 +31,6 @@ class URL(models.Model):
 
 class Analytics(models.Model):
   short_url = models.ForeignKey(URL, on_delete=models.CASCADE)
-  clicks = models.PositiveIntegerField(default=0)
   country = models.CharField(max_length=250, blank=True, null=True)
   country_code = models.CharField(max_length=250, blank=True, null=True)
   region_name = models.CharField(max_length=250, blank=True, null=True)
@@ -62,4 +61,4 @@ def post_post_save_receiver(sender, instance, created, *args, **kwargs):
     Analytics.objects.create(short_url=instance)
     # instance.save()
 
-post_save.connect(post_post_save_receiver, sender=URL)
+# post_save.connect(post_post_save_receiver, sender=URL)

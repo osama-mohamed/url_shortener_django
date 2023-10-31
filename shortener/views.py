@@ -84,7 +84,7 @@ class RedirectView(View):
       obj = qs.first()
       obj.clicks += 1
       obj.save()
-      a_obj = Analytics.objects.create(
+      Analytics.objects.create(
         short_url=obj,
         ip_address=ip,
         country=country_name,
@@ -104,8 +104,6 @@ class RedirectView(View):
         browser=browser_name,
         browser_version=browser_version,
       )
-      a_obj.clicks += 1
-      a_obj.save()
       return redirect(obj.url)
     else:
       raise Http404
