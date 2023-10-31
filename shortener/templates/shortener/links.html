@@ -1,0 +1,2 @@
+<p>ORIGINAL URL : {{ object.url }}</p>
+<p>SHORTENER URL : <a href="{{ request.scheme }}://{{ request.get_host }}{{ object.get_short_url }}" target="_blank" id="copyLink">{{ request.scheme }}://{{ request.get_host }}{{ object.get_short_url }}</a></p>

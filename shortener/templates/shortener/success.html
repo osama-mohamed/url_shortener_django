@@ -7,9 +7,6 @@
 {% block body %}
   <h1>Success!</h1>
   <br>
-  <p>ORIGINAL URL : {{ object.url }}</p>
-  <p>SHORTENER URL : <a href="{{ request.scheme }}://{{ request.get_host }}{{ object.get_short_url }}" target="_blank" id="copyLink">{{ request.scheme }}://{{ request.get_host }}{{ object.get_short_url }}</a></p>
-  <img src="{{ object.qr_code.url }}" alt="QR Code">
-  <button class="btn btn-info" id="copyButton">Copy Link</button>
-  <a class="btn btn-primary" href="{% url 'shortener:home' %}"> &#43; New </a>
+  {% include 'shortener/links.html' %}
+  {% include 'shortener/result.html' %}
 {% endblock %}
