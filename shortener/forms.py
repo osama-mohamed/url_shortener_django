@@ -1,5 +1,5 @@
 from django import forms
-from .validators import validate_url, validate_domain, validate_short_url
+from .validators import validate_url, validate_short_url
 from django.core.validators import RegexValidator
 from django.conf import settings
 
@@ -11,7 +11,7 @@ from .models import URL
 class UrlForm(forms.Form):
   url = forms.CharField(
     label='URL',
-    validators=[validate_url, validate_domain],
+    validators=[validate_url,],
     widget=forms.TextInput(
       attrs={
         'class': 'form-control',

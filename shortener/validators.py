@@ -2,26 +2,25 @@ from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
 from django.conf import settings
 
+import re
+
 
 def validate_url(value):
-  url_validator = URLValidator()
-  reg_value = value
-  if 'https://' in reg_value:
-    new_value = reg_value
-  elif 'http://' in reg_value:
-    new_value = reg_value
-  else:
-    new_value = 'https://' + value
-  try:
-    url_validator(new_value)
-  except:
+  url_regex = re.compile(
+    r'^(?:(?P<scheme>[a-zA-Z]+)://)?'  # Optional scheme (letters only) followed by '://'
+    r'(?P<host>[a-z0-9.-]+)?'          # Optional host (letters, digits, dots, and hyphens)
+    r'(?::(?P<port>\d+))?'             # Optional port (digits after colon)
+    r'(?P<path>/.*)?$',                # Optional path (starting with '/')
+    re.IGNORECASE
+  )
+  match = url_regex.match(value)
+  if not match:
     raise ValidationError('invalid URL syntax')
-  return new_value
-
-
-def validate_domain(value):
-  if '.' not in value:
-    raise ValidationError('invalid URL syntax because no . in url')
+  url_validator = URLValidator()
+  try:
+    url_validator(value)
+  except ValidationError:
+    raise ValidationError('Invalid URL syntax validation, URL must start with "http://" or "https://", and have a valid domain name (e.g. google.com)')
   return value
 
 
