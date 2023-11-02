@@ -1,14 +1,12 @@
 <div class="row">
     <div class="col-md-6 d-flex justify-content-center align-items-center">
-      <img src="{{ object.qr_code.url }}" alt="QR Code">
+      <a href="{{ object.qr_code.url }}" target="_blank">
+        <img src="{{ object.qr_code.url }}" alt="QR Code">
+      </a>
     </div>
-
     <div class="col-md-6 d-flex flex-column align-items-stretch justify-content-center">
-      <button class="btn btn-info mb-2" id="copyButton">Copy Shorten Link</button>
-      <a class="btn btn-primary mb-2" href="{% url 'shortener:home' %}"> &#43; New </a>
-      <a class="btn btn-success" href="{{ object.qr_code.url }}" download>QR Code Download &#8595;</a>
+      <a class="btn btn-primary mb-2" href="{% url 'shortener:home' %}">New URL</a>
+      <button class="btn btn-secondary mb-2" id="copyButton">Copy Shorten Link</button>
+      <a class="btn btn-success" href="{{ object.qr_code.url }}" download>QR Code Download</a>
     </div>
   </div>
-  <!-- <img src="{{ object.qr_code.url }}" alt="QR Code">
-  <button class="btn btn-info" id="copyButton">Copy Link</button>
-  <a class="btn btn-primary" href="{% url 'shortener:home' %}"> &#43; New </a> -->

@@ -8,8 +8,6 @@
   <h1>Already Exists!</h1>
   <br>
   {% include 'shortener/links.html' %}
-  {% if object.clicks %}
-    <p>Clicked : {{ object.clicks }}</p>
-  {% endif %}
   {% include 'shortener/result.html' %}
+  {% include 'shortener/analytics.html' %}
 {% endblock %}

@@ -22,7 +22,7 @@ class URL(models.Model):
   
 
 class Analytics(models.Model):
-  short_url = models.ForeignKey(URL, on_delete=models.CASCADE)
+  short_url = models.ForeignKey(URL, on_delete=models.CASCADE, related_name='analytics_data')
   country = models.CharField(max_length=250, blank=True, null=True)
   country_code = models.CharField(max_length=250, blank=True, null=True)
   region_name = models.CharField(max_length=250, blank=True, null=True)

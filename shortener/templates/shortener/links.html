@@ -1,2 +1,10 @@
 <p>ORIGINAL URL : {{ object.url }}</p>
-<p>SHORTENER URL : <a href="{{ request.scheme }}://{{ request.get_host }}{{ object.get_short_url }}" target="_blank" id="copyLink">{{ request.scheme }}://{{ request.get_host }}{{ object.get_short_url }}</a></p>
+<p>SHORTENER URL : 
+  <a href="{{ request.scheme }}://{{ request.get_host }}{{ object.get_short_url }}" target="_blank" id="copyLink">
+    {{ request.scheme }}://{{ request.get_host }}{{ object.get_short_url }}
+  </a>
+</p>
+<p>Date Created: {{ object.added|format_timestamp }}</p>
+{% if object.clicks %}
+  <p>Total Clicks: {{ object.clicks }}</p>
+{% endif %}
