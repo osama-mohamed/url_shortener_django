@@ -48,51 +48,43 @@
     {% for object in object.analytics_data.all %}
       <tr>
         <td>
-          {% if object.country and object.country_code and object.country != '-' and object.country_code != '-' %}
+          {% if object.country and object.country_code %}
             {{ object.country }}, {{ object.country_code }}
-          {% else %}
           {% endif %}
         </td>
         <td>
-          {% if object.region_name and object.city_name and object.region_name != '-' and object.city_name != '-' %}
+          {% if object.region_name and object.city_name %}
             {{ object.region_name }}, {{ object.city_name }}
-          {% else %}
           {% endif %}
         </td>
         <td>
-          {% if object.latitude and object.longitude and object.latitude != '-' and object.longitude != '-' %}
+          {% if object.latitude and object.longitude %}
             {{ object.latitude }}, {{ object.longitude }}
-          {% else %}
           {% endif %}
         </td>
         <td>
-          {% if object.platform and object.platform_version and object.platform != '-' and object.platform_version != '-' %}
+          {% if object.platform and object.platform_version %}
             {{ object.platform }}, {{ object.platform_version }}
-          {% else %}
           {% endif %}
         </td>
         <td>
-          {% if object.browser and object.browser_version and object.browser != '-' and object.browser_version != '-' %}
+          {% if object.browser and object.browser_version %}
             {{ object.browser }}, {{ object.browser_version }}
-          {% else %}
           {% endif %}
         </td>
         <td>
-          {% if object.ip_address and object.ip_address != '-' %}
+          {% if object.ip_address and object.ip_address %}
             {{ object.ip_address }}
-          {% else %}
           {% endif %}
         </td>
         <td>
-          {% if object.net_provider and object.net_provider_code and object.net_provider != '-' and object.net_provider_code != '-' %}
+          {% if object.net_provider and object.net_provider_code %}
             {{ object.net_provider }}, {{ object.net_provider_code }}
-          {% else %}
           {% endif %}
         </td>
         <td>
-          {% if object.timestamp and object.timestamp != '-' %}
+          {% if object.timestamp %}
             {{ object.timestamp|format_timestamp }}
-          {% else %}
           {% endif %}
         </td>
     </tr>
