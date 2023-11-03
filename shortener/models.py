@@ -2,7 +2,23 @@ from django.db import models
 from django.conf import settings
 from django.urls import reverse
 
+from .utils import create_shortcode, check_qr_img
+
 SHORTCODE_MAX = getattr(settings, 'SHORTCODE_MAX', 15)
+
+class URLManager(models.Manager):
+  def refresh(self, items=None): # URL.objects.refresh()
+    qs_count = 0
+    qs = URL.objects.filter(id__gte=1)
+    if items is not None and isinstance(items, int):
+      qs = qs.order_by('id')[:items]
+    for q in qs:
+      q.short_url = create_shortcode(q)
+      q.url = 'https://resume.io/r/b8KPmIP1e' + q.short_url
+      q.save()
+      check_qr_img(q)
+      qs_count += 1
+    return print(f'Refreshed {qs_count} URLs')
 
 
 class URL(models.Model):
@@ -13,6 +29,11 @@ class URL(models.Model):
   qr_code = models.ImageField(upload_to=settings.SHORTENER_QR_CODE_DIR, blank=True, null=True)
   added = models.DateTimeField(auto_now_add=True)
   updated = models.DateTimeField(auto_now=True)
+
+  objects = URLManager()
+
+  class Meta:
+    ordering = ['-id']
 
   def __str__(self):
     return str(self.url)
