@@ -26,7 +26,7 @@ class UrlShortenerView(View):
       if created:
         obj.short_url = short_url if short_url else create_shortcode(obj)
         obj.save()
-      check_qr_img(obj, request)
+      check_qr_img(obj)
       context['object'] = obj
       template = 'shortener/success.html' if created else 'shortener/already_exists.html'
     return render(request, template, context)

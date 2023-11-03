@@ -19,7 +19,7 @@ class URL(models.Model):
 
   def get_short_url(self):
     return reverse('shortener:redirect', kwargs={'short_url': self.short_url})
-  
+
 
 class Analytics(models.Model):
   short_url = models.ForeignKey(URL, on_delete=models.CASCADE, related_name='analytics_data')

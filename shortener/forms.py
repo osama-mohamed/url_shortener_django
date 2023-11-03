@@ -38,7 +38,7 @@ class UrlForm(forms.Form):
   )
 
   def clean_short_url(self):
-    short_url = self.cleaned_data['short_url']
+    short_url = self.cleaned_data.get('short_url')
     qs = URL.objects.filter(short_url__exact=short_url)
     if qs.exists():
       raise forms.ValidationError(mark_safe(f'Sorry the Custom URL already exists, Choose another OR <a href="{qs.first().get_short_url()}" target="_blank">Redirect</a> to it.'))

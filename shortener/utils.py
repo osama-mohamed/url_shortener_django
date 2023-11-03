@@ -20,14 +20,14 @@ def create_shortcode(instance, size=SHORTCODE_MIN):
   return new_code
 
 
-def check_qr_img(instance, request=None):
+def check_qr_img(instance):
   if instance.short_url:
     file_path = os.path.join(settings.MEDIA_ROOT, settings.SHORTENER_QR_CODE_DIR, f'{instance.short_url}.png')
     if not os.path.isfile(file_path):
-      generate_and_save_qr_code(instance, request=request)
+      generate_and_save_qr_code(instance)
 
 
-def generate_and_save_qr_code(instance, request=None):
+def generate_and_save_qr_code(instance):
   qr = qrcode.QRCode(
     version=1,
     error_correction=qrcode.constants.ERROR_CORRECT_L,
