@@ -12,10 +12,7 @@ from .analytics_create import create_new_analytics
 class UrlShortenerView(View):
   def get(self, request):
     form = UrlForm(None)
-    context = {
-      'form': form,
-      'title': 'OSAMA MOHAMED URL Shortener',
-    }
+    context = {'form': form, 'title': 'OSAMA MOHAMED URL Shortener'}
     return render(request, 'shortener/url.html', context)
 
   def post(self, request):
@@ -25,19 +22,12 @@ class UrlShortenerView(View):
     if form.is_valid():
       url = form.cleaned_data.get('url')
       short_url = form.cleaned_data.get('short_url')
-      new_url = 'https://' + url if 'https://' not in url and 'http://' not in url else url
-      obj, created = URL.objects.get_or_create(url=new_url)
+      obj, created = URL.objects.get_or_create(url=url)
       if created:
-        if short_url:
-          obj.short_url = short_url
-          obj.save()
-        elif not short_url:
-          obj.short_url = create_shortcode(obj)
-          obj.save()
-        check_qr_img(obj, request)
-      else:
-        check_qr_img(obj, request)
-      context = {'object': obj}
+        obj.short_url = short_url if short_url else create_shortcode(obj)
+        obj.save()
+      check_qr_img(obj, request)
+      context['object'] = obj
       template = 'shortener/success.html' if created else 'shortener/already_exists.html'
     return render(request, template, context)
 

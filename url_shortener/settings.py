@@ -12,8 +12,11 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
-from dotenv import load_dotenv
 
+import pymysql
+pymysql.install_as_MySQLdb()
+
+from dotenv import load_dotenv
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -30,8 +33,6 @@ SECRET_KEY = 'django-insecure-g!((@q*aygydl1_aa%mww9eya!!jg44j8hpuez9f_ujse%@*$l
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-# CSRF_TRUSTED_ORIGINS = ['https://ngrok']
-URL = 'http://127.0.0.1:8000'
 
 # Application definition
 
@@ -82,8 +83,6 @@ WSGI_APPLICATION = 'url_shortener.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-import pymysql
-pymysql.install_as_MySQLdb()
 
 DATABASES = {
     'default': {
@@ -136,18 +135,25 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
-
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, "static"),
-# ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+
+# set vars for url shortener app
 SHORTCODE_MIN = 6
 SHORTCODE_MAX = 15
 SHORTENER_QR_CODE_DIR = 'shortener/qr_codes'
+URL = 'http://127.0.0.1:8000'
+# CSRF_TRUSTED_ORIGINS = ['https://ngrok']
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

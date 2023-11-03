@@ -1,7 +1,6 @@
 from django import forms
 from .validators import validate_url, validate_short_url
 from django.core.validators import RegexValidator
-from django.conf import settings
 
 from django.utils.safestring import mark_safe
 
@@ -42,5 +41,5 @@ class UrlForm(forms.Form):
     short_url = self.cleaned_data['short_url']
     qs = URL.objects.filter(short_url__exact=short_url)
     if qs.exists():
-      raise forms.ValidationError(mark_safe(f'Sorry the Custom URL already exists, Choose another OR <a href="{settings.URL + qs.first().get_short_url()}" target="_blank">Redirect</a> to it.'))
+      raise forms.ValidationError(mark_safe(f'Sorry the Custom URL already exists, Choose another OR <a href="{qs.first().get_short_url()}" target="_blank">Redirect</a> to it.'))
     return short_url

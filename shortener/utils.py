@@ -22,7 +22,7 @@ def create_shortcode(instance, size=SHORTCODE_MIN):
 
 def check_qr_img(instance, request=None):
   if instance.short_url:
-    file_path = f'{os.path.join(settings.MEDIA_ROOT, settings.SHORTENER_QR_CODE_DIR, instance.short_url)}.png'
+    file_path = os.path.join(settings.MEDIA_ROOT, settings.SHORTENER_QR_CODE_DIR, f'{instance.short_url}.png')
     if not os.path.isfile(file_path):
       generate_and_save_qr_code(instance, request=request)
 
@@ -34,7 +34,7 @@ def generate_and_save_qr_code(instance, request=None):
     box_size=10,
     border=4,
   )
-  data = request.build_absolute_uri(instance.short_url) + '/'
+  data = settings.URL + '/' + instance.short_url + '/'
   qr.add_data(data)
   qr.make(fit=True)
   img = qr.make_image(fill_color='black', back_color='white')
@@ -44,3 +44,4 @@ def generate_and_save_qr_code(instance, request=None):
   image_file = File(buffer, name=name)
   instance.qr_code.save(name, image_file)
   instance.save()
+  return instance.qr_code.url
