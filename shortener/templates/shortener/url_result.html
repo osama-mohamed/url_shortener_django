@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  {{ body_head }} | {{ block.super }}
+{% endblock %}
+
+{% block body %}
+  <h1>{{ body_head }}!</h1>
+  <br>
+  {% include 'shortener/links.html' %}
+  {% if not created %}
+    {% include 'shortener/analytics.html' %}
+  {% endif %}
+{% endblock %}

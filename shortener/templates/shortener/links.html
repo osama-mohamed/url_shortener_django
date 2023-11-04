@@ -5,6 +5,22 @@
   </a>
 </p>
 <p>Date Created: {{ object.added|format_timestamp }}</p>
+
 {% if object.clicks %}
-  <p>Total Clicks: {{ object.clicks }}</p>
+  <p>Times Clicked: {{ object.clicks }}</p>
+{% elif not object.clicks and not created %}
+  <p>Times Clicked: 0</p>
 {% endif %}
+
+<div class="row">
+  <div class="col-md-6 d-flex justify-content-center align-items-center">
+    <a href="{{ object.qr_code.url }}" target="_blank">
+      <img src="{{ object.qr_code.url }}" alt="QR Code">
+    </a>
+  </div>
+  <div class="col-md-6 d-flex flex-column align-items-stretch justify-content-center">
+    <a class="btn btn-primary mb-2" href="{% url 'shortener:home' %}">New URL</a>
+    <button class="btn btn-secondary mb-2" id="copyButton">Copy Shorten Link</button>
+    <a class="btn btn-success" href="{{ object.qr_code.url }}" download>QR Code Download</a>
+  </div>
+</div>

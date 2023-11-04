@@ -28,7 +28,9 @@ class UrlShortenerView(View):
         obj.save()
       check_qr_img(obj)
       context['object'] = obj
-      template = 'shortener/success.html' if created else 'shortener/already_exists.html'
+      context['body_head'] = 'Success' if created else 'Already Exists'
+      context['created'] = created
+      template = 'shortener/url_result.html'
     return render(request, template, context)
 
 
@@ -42,5 +44,4 @@ class RedirectView(View):
       obj.save()
       create_new_analytics(ip, data, parsed_data, obj)
       return redirect(obj.url)
-    else:
-      raise Http404
+    raise Http404
