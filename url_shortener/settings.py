@@ -150,9 +150,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 SHORTCODE_MIN = 6
 SHORTCODE_MAX = 15
 SHORTENER_QR_CODE_DIR = 'shortener/qr_codes'
-URL = 'http://127.0.0.1:8000'
 # CSRF_TRUSTED_ORIGINS = ['https://ngrok']
-
 
 
 # Default primary key field type
