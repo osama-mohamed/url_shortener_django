@@ -14,7 +14,8 @@ class UrlForm(forms.Form):
     widget=forms.TextInput(
       attrs={
         'class': 'form-control',
-        'placeholder': 'Original URL Here'
+        'placeholder': 'Original URL Here',
+        'autocomplete': 'off',
       }
     )
   )
@@ -32,7 +33,8 @@ class UrlForm(forms.Form):
     widget=forms.TextInput(
       attrs={
         'class': 'form-control',
-        'placeholder': 'Custom URL Here'
+        'placeholder': 'Custom URL Here',
+        'autocomplete': 'off',
       }
     ),
   )
